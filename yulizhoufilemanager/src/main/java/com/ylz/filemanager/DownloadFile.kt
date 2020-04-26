@@ -55,7 +55,7 @@ class DownloadFile(val context: Activity, val url: String, path: String) {
     }
 
 
-    private fun getFile(path: String, name: String, size: String, byteLength: String) {
+    fun getFile(path: String, name: String, size: String, byteLength: String) {
         val httpService = HttpClientMaker.makePopularClient()
         val res =
             httpService.downloadFile(url)
