@@ -21,7 +21,7 @@ import tech.gujin.toast.ToastUtil
 class DownloadFile(val context: Activity, val url: String, path: String) {
     var view: TextView? = null
 
-    private fun makeHttpRequest(currentPath: String) {
+    fun makeHttpRequest() {
         val httpService = HttpClientMaker.makePopularClient()
         Log.e("DownloadFile", url)
         val followable =
