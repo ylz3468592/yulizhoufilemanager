@@ -18,14 +18,14 @@ import tech.gujin.toast.ToastUtil
  * @description:
  * @date :2020/4/26 14:14
  */
-class DownloadFile(val context: Activity, val url: String,val path: String) {
+class DownloadFile(val context: Activity, val url: String,val fileName:String,val path: String) {
     var view: TextView? = null
 
     fun makeHttpRequest() {
         val httpService = HttpClientMaker.makePopularClient()
-        Log.e("DownloadFile", url)
+        Log.e("DownloadFile", "$url/message/rest/wjlj?wjlj=$fileName")
         val followable =
-            httpService.getPopular(url)
+            httpService.getPopular("$url/message/rest/wjlj?wjlj=$fileName")
         val userListener: PopularListener = object : PopularListener {
             override fun listen(json: JsonObject) {
                 if (json.asJsonObject.get("ret").asString == "ERROR") {
@@ -58,7 +58,7 @@ class DownloadFile(val context: Activity, val url: String,val path: String) {
     fun getFile( name: String, size: String, byteLength: String) {
         val httpService = HttpClientMaker.makePopularClient()
         val res =
-            httpService.downloadFile(url)
+            httpService.downloadFile("$url/message/rest/downloadPath?wjlj=$fileName")
         val downListener = object : DownListener {
             override fun startDown(res: Boolean) {
                 if (res) {
