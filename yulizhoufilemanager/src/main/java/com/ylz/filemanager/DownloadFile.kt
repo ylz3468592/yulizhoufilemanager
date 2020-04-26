@@ -18,7 +18,7 @@ import tech.gujin.toast.ToastUtil
  * @description:
  * @date :2020/4/26 14:14
  */
-class DownloadFile(val context: Activity, val url: String, path: String) {
+class DownloadFile(val context: Activity, val url: String,val path: String) {
     var view: TextView? = null
 
     fun makeHttpRequest() {
@@ -44,7 +44,7 @@ class DownloadFile(val context: Activity, val url: String, path: String) {
                         yf.modifyDate = files.get(0).asJsonObject.get("modifyDate").asString
                         yf.size = files.get(0).asJsonObject.get("size").asString
                         yf.bytesLength = files.get(0).asJsonObject.get("bytesLength").asLong
-                        getFile(yf.abPath,yf.name, yf.size, yf.bytesLength.toString())
+                        getFile(yf.name, yf.size, yf.bytesLength.toString())
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -55,7 +55,7 @@ class DownloadFile(val context: Activity, val url: String, path: String) {
     }
 
 
-    fun getFile(path: String, name: String, size: String, byteLength: String) {
+    fun getFile( name: String, size: String, byteLength: String) {
         val httpService = HttpClientMaker.makePopularClient()
         val res =
             httpService.downloadFile(url)
